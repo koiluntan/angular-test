@@ -54,17 +54,18 @@ function GetDataByChance($q, $timeout) {
           defer.reject('data didn\'t recieve!');
         }
       }, 2000);
-      return defer.promise;
+    return defer.promise;
   }
 }
 
 myApp.factory('getData', GetDataByChance);
 myApp.run(function(getData) {
-  var promise = getData()
-    .then(function(string) {
-        console.log(string)
-      },
-      function(error) {
-        console.error(error)
-      })
+  var promise = getData();
+  promise.then(function(string) {
+      console.log(string)
+    },
+    function(shit) {
+      console.log(shit)
+    });
+    promise.finally(function(){console.log('Finished at: ', new Date());});
 });
